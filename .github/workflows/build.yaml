@@ -6,6 +6,9 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # Rebuild everyday at midnight
+    - cron:  '0 0 * * *'
 
 jobs:
   build:
