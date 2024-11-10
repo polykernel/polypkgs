@@ -29,5 +29,19 @@
         sha256 = "sha256-STkYCaXBoQSmFKpMdsKzqFGXHh9s0jeGi5K2itj8jmc=";
       };
     };
+
+    public = {
+      meta = with lib; {
+        description = "Generate Podman Quadlet files from a Podman command, compose file, or existing object";
+        homepage = "https://github.com/containers/podlet";
+        changelog = "https://github.com/containers/podlet/blob/v${config.version}/CHANGELOG.md";
+        license = licenses.mpl20;
+        maintainers = [ maintainers.polykernel ];
+        platforms = [
+          "x86_64-linux"
+          "aarch64-linux"
+        ];
+      };
+    };
   };
 }
