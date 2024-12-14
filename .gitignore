@@ -1,2 +1,8 @@
-# Nix build artifacts
+# Nix build out links
 result*
+
+# direnv
+.direnv/
+
+# pre-commit
+.pre-commit-config.yaml
