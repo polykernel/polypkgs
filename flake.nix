@@ -2,10 +2,14 @@
   description = "Polypkgs flake";
 
   inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixpkgs-unstable";
+
     dream2nix.url = "github:nix-community/dream2nix";
-    flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.follows = "dream2nix/nixpkgs";
+    dream2nix.inputs.nixpkgs.follows = "nixpkgs";
+
     pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
