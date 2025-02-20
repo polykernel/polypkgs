@@ -21,41 +21,40 @@ in
       };
 
     name = "rendercv";
-    version = "1.14";
+    version = "2.2";
 
     mkDerivation = {
       src = config.deps.fetchFromGitHub {
         owner = "sinaatalay";
         repo = "rendercv";
         rev = "refs/tags/v${config.version}";
-        hash = "sha256-wTf4PN9akUsdJO39xuc8EB+EH4pLr1hCZfjlpG5gOik=";
-        fetchSubmodules = true;
+        hash = "sha256-bIEuzMGV/l8Cunc4W04ESFYTKhNH+ffkA6eXGbyu3A0=";
       };
     };
 
     buildPythonPackage = {
-      format = "pyproject";
-      build-system = [ config.deps.python.pkgs.hatchling ];
+      pyproject = true;
 
       pythonImportsCheck = [
-        config.name
+        "rendercv.cli"
       ];
     };
 
     pip = {
-      requirementsList = pyproject.build-system.requires or [ ] ++ pyproject.project.dependencies or [ ];
+      requirementsList =
+        pyproject.build-system.requires
+        ++ pyproject.project.dependencies
+        ++ pyproject.project.optional-dependencies.full;
 
       flattenDependencies = true;
     };
 
     public = {
       meta = with lib; {
-        description = "A LaTeX cv/resume framework for academics and engineers";
+        description = "A Typst-based cv/resume framework for academics and engineers";
         changelog = "https://github.com/sinaatalay/rendercv/releases/tag/v${config.version}";
         longDescription = ''
-          RenderCV is a framework for maintaining and version-controlling professional
-          and customizable LaTeX CVs and resumes, built on top of the open-source
-          rendering engine.
+          RenderCV engine is a Typst-based Python package with a command-line interface (CLI) that allows you to version-control your CV/resume as source code. It reads a CV written in a YAML file with Markdown syntax, converts it into a Typst code, and generates a PDF.
         '';
         downloadPage = "https://github.com/sinaatalay/rendercv";
         homepage = "https://rendercv.com/";
