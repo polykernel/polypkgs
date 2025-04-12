@@ -22,6 +22,7 @@ let
       ];
       packageSets = {
         nixpkgs = pkgs;
+        polypkgs = packages;
       };
       specialArgs = {
         packagesRoot = packagesDir;
@@ -31,6 +32,9 @@ let
   packages = {
     canon-cups-ufr2 = evalPackage { packagePath = "canon-cups-ufr2"; };
     podlet = evalPackage { packagePath = "podlet"; };
+    mathic = evalPackage { packagePath = "mathic"; };
+    mathicgb = evalPackage { packagePath = "mathicgb"; };
+    memtailor = evalPackage { packagePath = "memtailor"; };
     inherit (packages.python-modules) rendercv;
 
     python-modules = lib.recurseIntoAttrs {
